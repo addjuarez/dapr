@@ -526,6 +526,10 @@ jobs:
         if: env.TEST_PREFIX != '' && env.TEST_CLOUD_ENV != ''
         run: ./tests/test-infra/skip_${{ env.TEST_CLOUD_ENV }}.sh
         shell: bash
+      - name: Determine if E2E tests should run
+        if: env.TEST_PREFIX != '' && env.TEST_CLOUD_ENV != ''
+        run: ./tests/test-infra/skip_${{ env.TEST_CLOUD_ENV }}.sh
+        shell: bash
       - name: Run E2E tests
         if: env.TEST_PREFIX != '' && env.SKIP_E2E != 'true'
         run: make test-e2e-all
